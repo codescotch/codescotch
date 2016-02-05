@@ -1,0 +1,13 @@
+{
+	"autoload": {
+		"psr-4": {
+			"Models\\": "app/models",
+			"Middleware\\": "app/middleware"
+		}
+	},
+    "require": {
+        "slim/slim": "^3.1",
+        "slim/twig-view": "^2.0",
+        "google/apiclient": "^1.1"
+    }
+}

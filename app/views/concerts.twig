@@ -1,0 +1,29 @@
+{% extends 'main.twig' %}
+
+{% block header %}
+	<a href="{{ path_for('home') }}"><img src="../../public/img/logo.png" class="logo-small"></a>
+{% endblock header %}
+
+{% block content %}
+
+	<form action="{{ path_for('concerts') }}" class="search-wrapper">
+    	<input type="text" name="search" placeholder="Search for bands or DJs" class="search-box">
+    	<input type="submit" value="Search" class="btn">
+    </form>
+
+    <div class="spacer"></div>
+   
+    {% if name is not empty %}
+        <h1>{{ name|title }} Concerts (HD)</h1>
+    {% endif %}
+    
+    <div class="video-wrapper">
+        {% for video in videoList %}
+        	{# be careful with raw, should only use if output is 100% trusted #}
+        	<div class="iframe">
+                {{ video.iframe|raw }} 
+            </div>
+        {% endfor %}
+    </div>
+    
+{% endblock content %}

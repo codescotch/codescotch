@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+    <meta charset="utf-8">
+    <title>{% block title %}data v data{% endblock title %}</title>
+    <meta name="description" content="Data driven tools, knowledge, and entertainment - adventures in the curious pursuit of data.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../public/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../public/css/main.css">
+    {# <link rel="stylesheet" type="text/css" href="../../public/css/queries.css"> #}
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,200,100,300italic' rel='stylesheet' type='text/css'>
+</head>
+<body>
+
+<!-- *********************************************** 
+HEADER
+************************************************ -->
+<header>
+    <div class="container">
+        <img src="../../public/img/logo.png" class="logo">
+        <h1>Tools, knowledge, and entertainment &mdash; adventures in the curious pursuit of data.</h1>
+    </div>
+</header>
+
+<!-- *********************************************** 
+PAGE CONTENT
+************************************************ -->
+<h2>
+    <a href="{{ path_for('concerts') }}" class="btn-large">Watch Full Concerts (alpha demo)</a>
+</h2>
+
+<div class="email-signup">
+    <p>This is a new project with humble beginnings. Drop your email if you want to follow the story.</p>
+    <!-- MailChimp Signup Form -->
+    <form action="//datavsdata.us12.list-manage.com/subscribe/post?u=004b9c94af760aa3a97349e51&amp;id=bb84a17623" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <input type="email" name="email" class="email" placeholder="email" required>
+        <!-- do not remove this or risk form bot signups -->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_004b9c94af760aa3a97349e51_bb84a17623" tabindex="-1" value=""></div>
+        <input type="submit" value="send me updates" name="subscribe" id="mc-embedded-subscribe" class="btn">
+    </form>
+</div>
+
+<!-- *********************************************** 
+FOOTER
+************************************************ -->
+<footer>
+    
+</footer>
+    
+</body>
+</html>

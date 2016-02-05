@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% block head %}
+        
+    <meta charset="utf-8">
+    <title>{% block title %}data v data{% endblock title %}</title>
+    <meta name="description" content="Data driven tools, knowledge, and entertainment - adventures in the curious pursuit of data.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../public/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../../public/css/main.css">
+    {# <link rel="stylesheet" type="text/css" href="../../public/css/queries.css"> #}
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,300,200,100,300italic' rel='stylesheet' type='text/css'>
+    
+	{% endblock head %}
+</head>
+<body>
+
+<!-- *********************************************** 
+HEADER
+************************************************ -->
+<header>
+    {% block header %}
+        
+    {% endblock header %}
+</header>
+
+<!-- *********************************************** 
+PAGE CONTENT
+************************************************ -->
+{% block content %}
+{% endblock content %}
+
+<!-- *********************************************** 
+FOOTER
+************************************************ -->
+<footer>
+    
+</footer>
+    
+</body>
+</html>
