@@ -15,8 +15,9 @@ $app->get('/concerts', function($request, $response, $args) {
 		$name = $_GET['search'];
 		$youtube = new YouTube();
 		$videoList = $youtube->nameSearch($name);
+		$videoList = $youtube->getVideoListStats($videoList);
 	}
-
+	
 	return $this->view->render($response, 'concerts.twig', [
 		'name' => $name,
 		'videoList' => $videoList

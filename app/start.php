@@ -26,9 +26,10 @@ $config = [
 $container = new Container($config);
 
 // configure database connection
-// $container['db'] = function() {
-//     return new PDO('mysql:host=127.0.0.1', 'root' '');
-// };
+$container['db'] = function() {
+    $db = new PDO('mysql:host=79.170.44.110;dbname=cl26-dataadmin', 'cl26-dataadmin', 'pi550ff');
+    return $db;
+};
 
 // register Twig view helper and configure it
 $container['view'] = function($c) {
@@ -37,6 +38,7 @@ $container['view'] = function($c) {
 		$c['router'],
 		$c['request']->getUri()
 	));
+	$view->addExtension(new Twig_Extension_Debug());
 	$view->parserOptions = [
 		'debug' => true
 	];
@@ -47,7 +49,7 @@ $container['view'] = function($c) {
 $app = new App($container);
 
 // application routes
-require ROOT . '/app/routes.php';
+require 'routes.php';
 
 // run app
 $app->run();
