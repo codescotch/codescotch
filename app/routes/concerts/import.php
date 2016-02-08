@@ -31,7 +31,7 @@ $app->post('/concerts_testing/import_list', function($request, $response) {
 				$videoList = $youtube->videoSearch($query, $keyword, $numResults);
 				$videoList = $youtube->getVideoDetails($videoList);
 				
-				$stmt = $this->db->prepare("INSERT INTO testing (query, keyword, video_id, title, description, tags, cat_id, publish_date, channel, channel_id, views, likes, dislikes, favorites, comments) VALUES (:query, :keyword, :video_id, :title, :description, :tags, :cat_id, :publish_date, :channel, :channel_id, :views, :likes, :dislikes, :favorites, :comments)");
+				$stmt = $this->db->prepare("INSERT INTO testing (query, keyword, video_id, title, description, tags, cat_id, publish_date, channel, channel_id, views, likes, dislikes, favorites, comments, iframe) VALUES (:query, :keyword, :video_id, :title, :description, :tags, :cat_id, :publish_date, :channel, :channel_id, :views, :likes, :dislikes, :favorites, :comments, :iframe)");
 
 				$rowCount = 0;
 
@@ -58,7 +58,8 @@ $app->post('/concerts_testing/import_list', function($request, $response) {
 						'likes' => $video['likes'],
 						'dislikes' => $video['dislikes'],
 						'favorites' => $video['favorites'],
-						'comments' => $video['comments']
+						'comments' => $video['comments'],
+						'iframe' => $video['iframe']
 						]);
 					}
 					catch (PDOException $e) {
