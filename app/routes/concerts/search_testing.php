@@ -3,10 +3,10 @@
 // adding namespace breaks google api
 // use Models\Concerts\YouTube;
 
-require ROOT . '/app/models/concerts/youtube.php';
+require_once ROOT . '/app/models/concerts/youtube.php';
 
-$app->get('/concerts', function($request, $response) {
-
+$app->get('/concerts_testing', function($request, $response) {
+	
 	$query = "";
 	$videoList = [];
 	$keywordList = [];
@@ -16,12 +16,12 @@ $app->get('/concerts', function($request, $response) {
 
 		$youtube = new YouTube();
 		$query = $_GET['search'];
-		$videoList = $youtube->videoSearch($query, "live");
+		$videoList = $youtube->videoSearch($query, "live", 50);
 		$videoList = $youtube->getVideoDetails($videoList);
 	}
-	return $this->view->render($response, 'concerts.twig', [
+	return $this->view->render($response, 'concerts_testing.twig', [
 
 		'query' => $query,
 		'videoList' => $videoList
 	]);
-})->setName('concerts');
+})->setName('concerts-testing');

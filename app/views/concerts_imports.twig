@@ -1,0 +1,34 @@
+{% extends 'main.twig' %}
+
+{% block header %}
+
+	<a href="{{ path_for('home') }}"><img src="../../public/img/logo.png" class="logo-small"></a>
+
+{% endblock header %}
+
+{% block content %}
+
+	<form action="{{ path_for('concerts') }}" class="search-wrapper">
+
+    	<input type="text" name="search" placeholder="Search for bands or DJs" class="search-box">
+    	<input type="submit" value="Search" class="btn">
+    </form>
+
+    <div class="spacer"></div>
+
+    <form action="{{ path_for('import-list') }}" method="POST">
+
+        Queries
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+        Keywords<br>
+        <textarea name="list" class="import-field" placeholder="One per line..."></textarea>
+        <textarea name="keywords" class="import-field">live</textarea>
+        <div class="clear"></div>
+        
+        Number of results: <input name="numResults" class="number-field" value="50" onclick="this.select()" maxlength="2">
+        <div class="clear"></div><br>
+
+        <input type="submit" value="submit" name="submit" class="btn">
+    </form>
+    
+{% endblock content %}

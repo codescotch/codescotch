@@ -27,12 +27,13 @@ $container = new Container($config);
 
 // configure database connection
 $container['db'] = function() {
-    $db = new PDO('mysql:host=79.170.44.110;dbname=cl26-dataadmin', 'cl26-dataadmin', 'pi550ff');
-    return $db;
+	
+    return new PDO('mysql:host=79.170.44.110;dbname=cl26-dataadmin', 'cl26-dataadmin', 'pi550ff');
 };
 
 // register Twig view helper and configure it
 $container['view'] = function($c) {
+	
 	$view = new Twig(ROOT . '/app/views/');
 	$view->addExtension(new TwigExtension(
 		$c['router'],
