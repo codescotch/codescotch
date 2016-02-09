@@ -145,16 +145,20 @@ input[type="submit"]:active {
 .iframe {
     display: inline-block;
     width: 600px; 
-    height:337.5px;  
+    height: 337.5px;  
     margin: 0 auto;
     padding: 0;
 }
 
 .iframe-testing {
+    height: 450px;
+    float: left;
+}
+
+.iframe-testing iframe {
     display: inline-block;
-    width: 300px; 
-    height:168.75px; 
-    margin: 0 auto 7px auto;
+    width: 600px; 
+    height: 337.5px;
     float: left;
 }
 
@@ -167,7 +171,32 @@ input[type="submit"]:active {
 
 .video-details {
     font-size: 75%;
-    /*float: right;*/
+    height: 450px;
+}
+
+.video-details h2 {
+    text-align: left;
+}
+
+.left-text {
+    text-align: left;
+    margin-left: 30px;
+}
+
+.perfect-score {
+    color: blue;
+}
+
+.good-score {
+    color: green;
+}
+
+.ok-score {
+    color: orange;
+}
+
+.bad-score {
+    color: red;
 }
 
 .clear {
@@ -182,4 +211,26 @@ input[type="submit"]:active {
 .number-field {
     width: 40px;
     text-align: center;
+}
+
+table {
+    margin-left: 30px;
+}
+
+table a {
+    text-decoration: none;
+}
+
+td {
+    width: 80px;
+}
+
+th, td {
+    border-bottom: 1px solid #333;
+    padding: 5px 0;
+}
+
+.testing-table .left-col {
+    width: 250px;
+    text-align: left;
 }

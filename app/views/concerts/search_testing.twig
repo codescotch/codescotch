@@ -12,6 +12,12 @@
     </form>
 
     <div class="spacer"></div>
+    <div class="left-text">
+        <p>
+            <a href="{{ path_for('import') }}">bulk imports</a>&nbsp; | &nbsp;
+            <a href="{{ path_for('import-browse') }}">browse imported records</a>
+        </p>
+    </div>
 
     {% if query is not empty %}
         <h1>{{ query|title }} Concerts (HD)</h1>
@@ -28,8 +34,8 @@
             {# for testing #}
             <div class="video-details">
                 <strong>{{ video.title }}</strong><br>
-                {{ video.publishedAt }}<br>
-                <em>{{ video.channelTitle }}</em> | {{ video.id }}<br><br>
+                {{ video.publishDate }}<br>
+                <em>{{ video.channel }}</em> | {{ video.videoId }}<br><br>
                 {{ video.description }}<br><br>
                 <strong>Views:</strong> {{ video.views|number_format }}&nbsp;
                 <strong>Likes:</strong> {{ video.likes|number_format }}&nbsp;

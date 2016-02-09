@@ -5,6 +5,7 @@
 
 require ROOT . '/app/models/concerts/youtube.php';
 
+// search results page
 $app->get('/concerts', function($request, $response) {
 
 	$query = "";
@@ -19,7 +20,7 @@ $app->get('/concerts', function($request, $response) {
 		$videoList = $youtube->videoSearch($query, "live");
 		$videoList = $youtube->getVideoDetails($videoList);
 	}
-	return $this->view->render($response, 'concerts.twig', [
+	return $this->view->render($response, 'concerts/search.twig', [
 
 		'query' => $query,
 		'videoList' => $videoList

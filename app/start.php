@@ -4,9 +4,6 @@
 FRONT CONTROLLER (SLIM 3 FRAMEWORK + TWIG TEMPLATE ENGINE)
 *************************************************************/
 
-// define common folders
-define('ROUTES', dirname(__DIR__) . '/app/routes/');
-
 // autoload vendor classes
 require ROOT . '/vendor/autoload.php';
 

@@ -1,0 +1,85 @@
+{% extends 'main.twig' %}
+
+{% block header %}
+    <a href="{{ path_for('home') }}"><img src="{{ path_for('home') }}img/logo.png" class="logo-small"></a>
+{% endblock header %}
+
+{% block content %}
+
+    <div class="spacer"></div>
+    {% set clearNullRelevance = "/public/concerts_testing/update_video_relevance_null_values/" ~ query %}
+    <div class="left-text">
+        <p><a href="{{ clearNullRelevance }}">Mark all unrated relevance as bad - only use AFTER all relevant videos are rated</a></p>
+        <p>
+            <a href="{{ path_for('import-browse') }}"><< back to browse imports</a>
+        </p>
+    </div>
+    <div class="video-wrapper">
+        {% set i = 0 %}
+        {% for video in videoList %}
+            {% set i = i + 1 %}
+            {# be careful with raw, should only use if output is 100% trusted #}
+            <div class="iframe-testing">
+                {{ video.iframe|raw }}
+            </div>
+            
+            {# for testing #}
+            <div class="video-details">
+                <hr><br>
+                <h2>&nbsp;&nbsp;Quality: 
+                    {% if video.quality_score == "perfect" %}
+                        <span class="quality-score perfect-score">
+                    {% elseif video.quality_score == "good" %}
+                        <span class="quality-score good-score">
+                    {% elseif video.quality_score == "ok" %}
+                        <span class="quality-score ok-score">
+                    {% elseif video.quality_score == "bad" %}
+                        <span class="quality-score bad-score">
+                    {% endif %}
+                    {{ video.quality_score }}</span>
+                    &nbsp; &nbsp; Relevance: 
+                    {% if video.relevance_score == "good" %}
+                        <span class="relevance-score good-score">
+                    {% elseif video.relevance_score == "ok" %}
+                        <span class="relevance-score ok-score">
+                    {% elseif video.relevance_score == "bad" %}
+                        <span class="relevance-score bad-score">
+                    {% endif %}
+                    {{ video.relevance_score }}</span>
+                </h2><br>
+                {% set spacer =  "&nbsp; | &nbsp;" %}
+                {% set perfectQuality = "/public/concerts_testing/update_video_quality_score/" ~ video.video_id ~ "/perfect" %}
+                {% set goodQuality = "/public/concerts_testing/update_video_quality_score/" ~ video.video_id ~ "/good" %}
+                {% set okQuality = "/public/concerts_testing/update_video_quality_score/" ~ video.video_id ~ "/ok" %}
+                {% set badQuality = "/public/concerts_testing/update_video_quality_score/" ~ video.video_id ~ "/bad" %}
+                {% set goodMatch = "/public/concerts_testing/update_video_relevance_score/" ~ video.video_id ~ "/good" %}
+                {% set okMatch = "/public/concerts_testing/update_video_relevance_score/" ~ video.video_id ~ "/ok" %}
+                {% set badMatch = "/public/concerts_testing/update_video_relevance_score/" ~ video.video_id ~ "/bad" %}
+                <strong>Quality:</strong> &nbsp;
+                <a href="{{ perfectQuality }}" name="perfect-score" class="quality-score-link" target="updateScore">perfect</a>{{ spacer|raw }}
+                <a href="{{ goodQuality }}" name="good-score" class="quality-score-link" target="updateScore">good</a>{{ spacer|raw }}
+                <a href="{{ okQuality }}" name="ok-score" class="quality-score-link" target="updateScore">ok</a>{{ spacer|raw }}
+                <a href="{{ badQuality }}" name="bad-score" class="quality-score-link" target="updateScore">bad</a> &nbsp; &nbsp;
+                
+                <strong>Relevance:</strong> &nbsp;
+                <a href="{{ goodMatch }}" name="good-score" class="relevance-score-link" target="updateScore">good</a>{{ spacer|raw }}
+                <a href="{{ okMatch }}" name="ok-score" class="relevance-score-link" target="updateScore">ok</a>{{ spacer|raw }}
+                <a href="{{ badMatch }}" name="bad-score" class="relevance-score-link" target="updateScore">bad</a>
+                <br><br>
+                <strong>{{ video.title }}</strong><br>
+                {{ video.publish_date }}<br>
+                <em>{{ video.channel }}</em> | {{ video.video_id }}<br><br>
+                {{ video.description }}<br><br>
+                <strong>Views:</strong> {{ video.views|number_format }}&nbsp;
+                <strong>Likes:</strong> {{ video.likes|number_format }}&nbsp;
+                <strong>Dislikes:</strong> {{ video.dislikes|number_format }}&nbsp;
+                <strong>Favorites:</strong> {{ video.favorites|number_format }}&nbsp;
+                <strong>Comments:</strong> {{ video.comments|number_format }}<br><br>
+                {{ i }}<br><br>
+            </div>
+            <div class="clear"></div>
+        {% endfor %}
+    </div>
+
+{% endblock content %}
+

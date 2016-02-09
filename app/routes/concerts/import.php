@@ -3,7 +3,7 @@
 // import page
 $app->get('/concerts_testing/import', function($request, $response) {
 
-	$this->view->render($response, 'concerts_imports.twig');
+	$this->view->render($response, 'concerts/import.twig');
 
 })->setName('import');
 
@@ -31,7 +31,7 @@ $app->post('/concerts_testing/import_list', function($request, $response) {
 				$videoList = $youtube->videoSearch($query, $keyword, $numResults);
 				$videoList = $youtube->getVideoDetails($videoList);
 				
-				$stmt = $this->db->prepare("INSERT INTO testing (query, keyword, video_id, title, description, tags, cat_id, publish_date, channel, channel_id, views, likes, dislikes, favorites, comments, iframe) VALUES (:query, :keyword, :video_id, :title, :description, :tags, :cat_id, :publish_date, :channel, :channel_id, :views, :likes, :dislikes, :favorites, :comments, :iframe)");
+				$stmt = $this->db->prepare("INSERT INTO `testing` (`query`, `keyword`, `video_id`, `title`, `description`, `tags`, `cat_id`, `publish_date`, `channel`, `channel_id`, `views`, `likes`, `dislikes`, `favorites`, `comments`, `iframe`) VALUES (:query, :keyword, :video_id, :title, :description, :tags, :cat_id, :publish_date, :channel, :channel_id, :views, :likes, :dislikes, :favorites, :comments, :iframe)");
 
 				$rowCount = 0;
 
@@ -44,22 +44,22 @@ $app->post('/concerts_testing/import_list', function($request, $response) {
 							$tags = implode(", ", $video['tags']);
 						}
 						$stmt->execute([
-						'query' => $video['query'],
-						'keyword' => $video['keyword'],
-						'video_id' => $video['videoId'],
-						'title' => $video['title'],
-						'description' => $video['description'],
-						'tags' => $tags,
-						'cat_id' => $video['catId'],
-						'publish_date' => $video['publishDate'],
-						'channel' => $video['channel'],
-						'channel_id' => $video['channelId'],
-						'views' => $video['views'],
-						'likes' => $video['likes'],
-						'dislikes' => $video['dislikes'],
-						'favorites' => $video['favorites'],
-						'comments' => $video['comments'],
-						'iframe' => $video['iframe']
+							'query' => $video['query'],
+							'keyword' => $video['keyword'],
+							'video_id' => $video['videoId'],
+							'title' => $video['title'],
+							'description' => $video['description'],
+							'tags' => $tags,
+							'cat_id' => $video['catId'],
+							'publish_date' => $video['publishDate'],
+							'channel' => $video['channel'],
+							'channel_id' => $video['channelId'],
+							'views' => $video['views'],
+							'likes' => $video['likes'],
+							'dislikes' => $video['dislikes'],
+							'favorites' => $video['favorites'],
+							'comments' => $video['comments'],
+							'iframe' => $video['iframe']
 						]);
 					}
 					catch (PDOException $e) {

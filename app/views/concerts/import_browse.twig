@@ -1,0 +1,48 @@
+{% extends 'main.twig' %}
+
+{% block header %}
+    <a href="{{ path_for('home') }}"><img src="{{ path_for('home') }}img/logo.png" class="logo-small"></a>
+{% endblock header %}
+
+{% block content %}
+
+	<div class="spacer"></div>
+	<div class="left-text">
+		<p>
+			<a href="{{ path_for('concerts-testing') }}"><< back to main testing page</a>&nbsp; | &nbsp;
+            <a href="{{ path_for('import-browse') }}">bulk imports</a>
+		</p>
+	</div>
+
+	<table class="testing-table">
+		<tr>
+			<th class="left-col">Query</th>
+			<th>Num Records</th>
+			<th>Quality Scores</th>
+			<th>Perfect</th>
+			<th>Good</th>
+			<th>OK</th>
+			<th>Bad</th>
+			<th>Relevance Scores</th>
+			<th>Good</th>
+			<th>OK</th>
+			<th>Bad</th>
+		</tr>
+		{% for query in queryList %}
+			<tr>
+				<td class="left-col"><a href="{{ path_for('import-browse') }}/{{ query.query }}">{{ query.query }}</a></td>
+				<td><strong>{{ query.stats.numRecords }}</strong></td>
+				<td><strong>{{ query.stats.numQualityScores }}</strong></td>
+				<td>{{ query.stats.perfectQuality }}</td>
+				<td>{{ query.stats.goodQuality }}</td>
+				<td>{{ query.stats.okQuality }}</td>
+				<td>{{ query.stats.badQuality }}</td>
+				<td><strong>{{ query.stats.numRelevanceScores }}</strong></td>
+				<td>{{ query.stats.goodRelevance }}</td>
+				<td>{{ query.stats.okRelevance }}</td>
+				<td>{{ query.stats.badRelevance }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+
+{% endblock content %}

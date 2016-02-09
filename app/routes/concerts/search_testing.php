@@ -16,10 +16,10 @@ $app->get('/concerts_testing', function($request, $response) {
 
 		$youtube = new YouTube();
 		$query = $_GET['search'];
-		$videoList = $youtube->videoSearch($query, "live", 50);
+		$videoList = $youtube->videoSearch($query, "live", 30);
 		$videoList = $youtube->getVideoDetails($videoList);
 	}
-	return $this->view->render($response, 'concerts_testing.twig', [
+	return $this->view->render($response, 'concerts/search_testing.twig', [
 
 		'query' => $query,
 		'videoList' => $videoList
