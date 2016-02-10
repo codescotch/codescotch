@@ -20,6 +20,8 @@ $app->post('/concerts_testing/import_list', function($request, $response) {
 		$keywordList = explode(",", $keywordList);
 		$numResults = intval($_POST['numResults']);
 		$videoList = [];
+		$tags = [];
+		
 		$youtube = new YouTube();
 
 		$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -70,7 +72,7 @@ $app->post('/concerts_testing/import_list', function($request, $response) {
 				}
 				$message = "Query: " . $query . " " . $keyword . " | Rows inserted: " . $rowCount . "<br>";
 				$response->write($message);
-			}	
+			}
 		}
 	}
 	$response->write("<br><a href=\"" . $this->router->pathFor('import') . "\">Back to imports</a>");

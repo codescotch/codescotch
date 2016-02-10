@@ -27,23 +27,18 @@
             <div class="video-details">
                 <hr><br>
                 <h2>&nbsp;&nbsp;Quality: 
-                    {% if video.quality_score == "perfect" %}
-                        <span class="quality-score perfect-score">
-                    {% elseif video.quality_score == "good" %}
-                        <span class="quality-score good-score">
-                    {% elseif video.quality_score == "ok" %}
-                        <span class="quality-score ok-score">
-                    {% elseif video.quality_score == "bad" %}
-                        <span class="quality-score bad-score">
+                    {% if video.quality_score == "perfect" %}<span class="quality-score perfect-score">
+                    {% elseif video.quality_score == "good" %}<span class="quality-score good-score">
+                    {% elseif video.quality_score == "ok" %}<span class="quality-score ok-score">
+                    {% elseif video.quality_score == "bad" %}<span class="quality-score bad-score">
+                    {% elseif video.quality_score == "" %}<span class="quality-score clear-score">
                     {% endif %}
                     {{ video.quality_score }}</span>
                     &nbsp; &nbsp; Relevance: 
-                    {% if video.relevance_score == "good" %}
-                        <span class="relevance-score good-score">
-                    {% elseif video.relevance_score == "ok" %}
-                        <span class="relevance-score ok-score">
-                    {% elseif video.relevance_score == "bad" %}
-                        <span class="relevance-score bad-score">
+                    {% if video.relevance_score == "good" %}<span class="relevance-score good-score">
+                    {% elseif video.relevance_score == "ok" %}<span class="relevance-score ok-score">
+                    {% elseif video.relevance_score == "bad" %}<span class="relevance-score bad-score">
+                    {% elseif video.quality_score == "" %}<span class="relevance-score">
                     {% endif %}
                     {{ video.relevance_score }}</span>
                 </h2><br>
@@ -52,19 +47,23 @@
                 {% set goodQuality = "/public/concerts_testing/update_video_quality_score/" ~ video.video_id ~ "/good" %}
                 {% set okQuality = "/public/concerts_testing/update_video_quality_score/" ~ video.video_id ~ "/ok" %}
                 {% set badQuality = "/public/concerts_testing/update_video_quality_score/" ~ video.video_id ~ "/bad" %}
+                {% set clearQuality = "/public/concerts_testing/update_video_quality_score/" ~ video.video_id ~ "/clear" %}
                 {% set goodMatch = "/public/concerts_testing/update_video_relevance_score/" ~ video.video_id ~ "/good" %}
                 {% set okMatch = "/public/concerts_testing/update_video_relevance_score/" ~ video.video_id ~ "/ok" %}
                 {% set badMatch = "/public/concerts_testing/update_video_relevance_score/" ~ video.video_id ~ "/bad" %}
+                {% set clearMatch = "/public/concerts_testing/update_video_relevance_score/" ~ video.video_id ~ "/clear" %}
                 <strong>Quality:</strong> &nbsp;
                 <a href="{{ perfectQuality }}" name="perfect-score" class="quality-score-link" target="updateScore">perfect</a>{{ spacer|raw }}
                 <a href="{{ goodQuality }}" name="good-score" class="quality-score-link" target="updateScore">good</a>{{ spacer|raw }}
                 <a href="{{ okQuality }}" name="ok-score" class="quality-score-link" target="updateScore">ok</a>{{ spacer|raw }}
-                <a href="{{ badQuality }}" name="bad-score" class="quality-score-link" target="updateScore">bad</a> &nbsp; &nbsp;
+                <a href="{{ badQuality }}" name="ok-score" class="quality-score-link" target="updateScore">bad</a>{{ spacer|raw }}
+                <a href="{{ clearQuality }}" name="clear-score" class="quality-score-link" target="updateScore">clear</a> &nbsp; &nbsp;
                 
                 <strong>Relevance:</strong> &nbsp;
                 <a href="{{ goodMatch }}" name="good-score" class="relevance-score-link" target="updateScore">good</a>{{ spacer|raw }}
                 <a href="{{ okMatch }}" name="ok-score" class="relevance-score-link" target="updateScore">ok</a>{{ spacer|raw }}
-                <a href="{{ badMatch }}" name="bad-score" class="relevance-score-link" target="updateScore">bad</a>
+                <a href="{{ badMatch }}" name="bad-score" class="relevance-score-link" target="updateScore">bad</a>{{ spacer|raw }}
+                <a href="{{ clearMatch }}" name="clear-score" class="relevance-score-link" target="updateScore">clear</a>
                 <br><br>
                 <strong>{{ video.title }}</strong><br>
                 {{ video.publish_date }}<br>

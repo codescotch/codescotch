@@ -5,14 +5,24 @@ $app->get('/concerts_testing/import/browse', function($request, $response) {
 
 	$stmt = $this->db->prepare("SELECT DISTINCT `query` FROM `testing` ORDER BY `query` ASC");
 	$stmt->execute();
-	$queryList = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$rows = $stmt->rowCount();
+
+	$stmt2 = $this->db->prepare("SELECT DISTINCT `keyword` FROM `testing` WHERE `query` = :query");
+	
+	for ($i = 0; $i < $rows; $i++) {
+		
+		$queryList[] = $stmt->fetch(PDO::FETCH_ASSOC);
+		$stmt2->execute([ 'query' => $queryList[$i]['query'] ]);
+		
+		$queryList[$i]['keywords'] = $stmt2->fetchAll(PDO::FETCH_COLUMN);
+	}
 
 	$i = 0;
-
 	foreach ($queryList as $query) {
-		
+
 		$stmt = $this->db->prepare("SELECT
 		    SUM(CASE WHEN `id` LIKE '%%' THEN 1 ELSE 0 END) AS numRecords,
+		    COUNT(DISTINCT `video_id`) AS uniqueRecords,
 		    SUM(CASE WHEN `quality_score` LIKE '%%' THEN 1 ELSE 0 END) AS numQualityScores,
 		    SUM(CASE WHEN `quality_score` LIKE '%perfect%' THEN 1 ELSE 0 END) AS perfectQuality,
 		    SUM(CASE WHEN `quality_score` LIKE '%good%' THEN 1 ELSE 0 END) AS goodQuality,
@@ -28,6 +38,7 @@ $app->get('/concerts_testing/import/browse', function($request, $response) {
 		$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 		$queryList[$i]['stats']['numRecords'] = $result[0]['numRecords'];
+		$queryList[$i]['stats']['uniqueRecords'] = $result[0]['uniqueRecords'];
 		$queryList[$i]['stats']['numQualityScores'] = $result[0]['numQualityScores'];
 		$queryList[$i]['stats']['perfectQuality'] = $result[0]['perfectQuality'];
 		$queryList[$i]['stats']['goodQuality'] = $result[0]['goodQuality'];
@@ -45,5 +56,4 @@ $app->get('/concerts_testing/import/browse', function($request, $response) {
 		
 		'queryList' => $queryList
 	]);
-	
 })->setName('import-browse');

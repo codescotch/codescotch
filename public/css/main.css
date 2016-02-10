@@ -199,6 +199,10 @@ input[type="submit"]:active {
     color: red;
 }
 
+.clear-score {
+    color: #888;
+}
+
 .clear {
     clear: both;
 }
@@ -233,4 +237,8 @@ th, td {
 .testing-table .left-col {
     width: 250px;
     text-align: left;
+}
+
+.small-text {
+    font-size: 65%;
 }
