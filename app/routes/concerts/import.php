@@ -19,7 +19,6 @@ $app->post('/concerts_testing/import_list', function($request, $response) {
 		$keywordList = preg_replace('[\r\n?|\n]',',',trim($keywordList));
 		$keywordList = explode(",", $keywordList);
 		$numResults = intval($_POST['numResults']);
-		$videoList = [];
 		$tags = [];
 		
 		$youtube = new YouTube();

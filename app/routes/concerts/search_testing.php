@@ -9,9 +9,7 @@ $app->get('/concerts_testing', function($request, $response) {
 	
 	$query = "";
 	$videoList = [];
-	$keywordList = [];
-	$errors = "";
-	
+
 	if (isset($_GET['search']) && !empty($_GET['search'])) {
 
 		$youtube = new YouTube();

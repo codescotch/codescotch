@@ -19,7 +19,7 @@ $config = [
     ],
 ];
 
-// create depencency injection container
+// create dependency injection container
 $container = new Container($config);
 
 // configure database connection

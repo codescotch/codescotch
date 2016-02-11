@@ -22,7 +22,6 @@ class YouTube {
 			$searchQuery = trim($query) . " " . trim($keyword);
 			$videoList = [];
 			$errors = "";
-			$i = 0;
 
 			try {
 
@@ -54,19 +53,24 @@ class YouTube {
 
 				$errors .= sprintf('<p>A service error occurred: <code>%s</code></p>',
 				htmlspecialchars($e->getMessage()));
+				return $errors;
 			}
 			catch (Google_Exception $e) {
 
 				$errors .= sprintf('<p>An client error occurred: <code>%s</code></p>',
 				htmlspecialchars($e->getMessage()));
+				return $errors;
 			}
 			return $videoList;
 		}
+		return "Empty query.";
 	}
 
 	public function getVideoDetails($videoList) {
 
 		foreach ($videoList as $video) {
+
+			$errors = "";
 
 			try {
 
